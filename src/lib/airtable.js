@@ -14,8 +14,8 @@
 //       Referral Source (Single select)
 // ─────────────────────────────────────────────────────────────
 
-const TOKEN = "REDACTED";
-const BASE_ID = "appZlODSOVu1gyq72";
+const TOKEN   = import.meta.env.VITE_AIRTABLE_TOKEN
+const BASE_ID = import.meta.env.VITE_AIRTABLE_BASE_ID
 const TABLE = "Waitlist Users";
 const API_URL = `https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent(
   TABLE
