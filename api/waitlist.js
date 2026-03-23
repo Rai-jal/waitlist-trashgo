@@ -142,7 +142,8 @@ export default async function handler(req, res) {
 
       const data = await r.json();
       if (!r.ok) {
-        return res.status(r.status).json({ error: "Failed to save your details. Please try again." });
+        // Expose Airtable error for debugging — revert to generic message after fixing
+        return res.status(r.status).json({ error: data?.error?.message || data?.error?.type || JSON.stringify(data) });
       }
 
       // 2. Send WhatsApp confirmation via Fonnte (non-blocking)
