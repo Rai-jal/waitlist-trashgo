@@ -64,7 +64,7 @@ async function sendWhatsApp(phone, name) {
     body: JSON.stringify({
       target:      sanitizePhone(phone),
       message,
-      countryCode: "234", // Nigeria — change if needed
+      countryCode: "232", // Sierra Leone
     }),
   });
 }
@@ -154,7 +154,7 @@ export default async function handler(req, res) {
       }
 
       // 2. Send WhatsApp confirmation via Fonnte (non-blocking)
-      sendWhatsApp(phone, fullName.trim()).catch(() => {});
+      sendWhatsApp(phone, fullName.trim()).catch((err) => console.error("Fonnte error:", err));
 
       return res.status(200).json(data);
     } catch {
