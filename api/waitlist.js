@@ -136,7 +136,7 @@ export default async function handler(req, res) {
           fields: {
             "Full Name":        fullName.trim(),
             "Phone Number":     sanitizePhone(phone),
-            "Location":         location.trim(),
+            "Location / Area":  location.trim(),
             "Customer Type":    customerType,
             "Waste Type":       wasteType,
             "Waste Quantity":   wasteQuantity,
