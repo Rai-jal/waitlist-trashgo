@@ -1,8 +1,8 @@
 const TOKEN        = process.env.AIRTABLE_TOKEN;
 const BASE_ID      = process.env.AIRTABLE_BASE_ID;
 const FONNTE_TOKEN = process.env.FONNTE_TOKEN;
-const TABLE        = "Waitlist Users";
-const API_URL      = `https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent(TABLE)}`;
+const TABLE_ID = "tblEwsKJYZOC5HS5C";
+const API_URL  = `https://api.airtable.com/v0/${BASE_ID}/${TABLE_ID}`;
 
 // ── Simple in-memory rate limit (resets per cold start) ──────
 // For persistent rate limiting across serverless instances, use Vercel KV.
