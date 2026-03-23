@@ -143,6 +143,7 @@ export default async function handler(req, res) {
             "Waste Pickup Frequency":   frequency,
             "Referral Source":  referralSource,
           },
+          typecast: true,
         }),
       });
 
