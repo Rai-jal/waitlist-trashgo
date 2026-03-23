@@ -55,7 +55,7 @@ async function sendWhatsApp(phone, name) {
     `Let's build cleaner communities together.\n\n` +
     `— TrashGo Team`;
 
-  await fetch("https://api.fonnte.com/send", {
+  const r    = await fetch("https://api.fonnte.com/send", {
     method: "POST",
     headers: {
       Authorization: FONNTE_TOKEN,
@@ -67,6 +67,8 @@ async function sendWhatsApp(phone, name) {
       countryCode: "232", // Sierra Leone
     }),
   });
+  const data = await r.json();
+  return data; // returns Fonnte response for debugging
 }
 
 export default async function handler(req, res) {
@@ -153,10 +155,10 @@ export default async function handler(req, res) {
         return res.status(r.status).json({ error: data?.error?.message || data?.error?.type || JSON.stringify(data) });
       }
 
-      // 2. Send WhatsApp confirmation via Fonnte (non-blocking)
-      sendWhatsApp(phone, fullName.trim()).catch((err) => console.error("Fonnte error:", err));
+      // 2. Send WhatsApp confirmation via Fonnte
+      const fonnteResult = await sendWhatsApp(phone, fullName.trim()).catch((err) => ({ error: err.message }));
 
-      return res.status(200).json(data);
+      return res.status(200).json({ ...data, fonnte: fonnteResult });
     } catch {
       return res.status(500).json({ error: "Something went wrong. Please try again." });
     }
