@@ -1,8 +1,10 @@
 const TOKEN        = process.env.AIRTABLE_TOKEN;
 const BASE_ID      = process.env.AIRTABLE_BASE_ID;
 const FONNTE_TOKEN = process.env.FONNTE_TOKEN;
-const TABLE_ID = "tblEwsKJYZOC5HS5C";
-const API_URL  = `https://api.airtable.com/v0/${BASE_ID}/${TABLE_ID}`;
+const TABLE_ID     = "tblEwsKJYZOC5HS5C";
+const API_URL      = `https://api.airtable.com/v0/${BASE_ID}/${TABLE_ID}`;
+
+const missingEnv = ["AIRTABLE_TOKEN", "AIRTABLE_BASE_ID", "FONNTE_TOKEN"].filter(k => !process.env[k]);
 
 // ── Simple in-memory rate limit (resets per cold start) ──────
 // For persistent rate limiting across serverless instances, use Vercel KV.
@@ -68,6 +70,10 @@ async function sendWhatsApp(phone, name) {
 }
 
 export default async function handler(req, res) {
+  if (missingEnv.length > 0) {
+    return res.status(500).json({ error: `Missing environment variables: ${missingEnv.join(", ")}` });
+  }
+
   // Same-origin on Vercel — only needed for local dev
   const origin = req.headers.origin || "";
   if (origin.includes("localhost") || origin.includes("127.0.0.1")) {
