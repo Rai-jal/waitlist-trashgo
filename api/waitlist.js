@@ -28,14 +28,14 @@ const VALID_REFERRALS       = ["WhatsApp", "Facebook", "Friend / Referral", "Fly
 function validateBody(body) {
   const { fullName, phone, location, customerType, wasteType, wasteQuantity, frequency, referralSource } = body || {};
 
-  if (!fullName    || typeof fullName    !== "string" || fullName.trim().length < 2)    return "Invalid full name.";
-  if (!phone       || typeof phone       !== "string" || phone.trim().length < 6)       return "Invalid phone number.";
-  if (!location    || typeof location    !== "string" || location.trim().length < 2)    return "Invalid location.";
-  if (!VALID_CUSTOMER_TYPES.includes(customerType))  return "Invalid customer type.";
-  if (!VALID_WASTE_TYPES.includes(wasteType))        return "Invalid waste type.";
-  if (!VALID_FREQUENCIES.includes(frequency))        return "Invalid pickup frequency.";
-  if (!VALID_QUANTITIES.includes(wasteQuantity))     return "Invalid waste quantity.";
-  if (!VALID_REFERRALS.includes(referralSource))     return "Invalid referral source.";
+  if (!fullName || typeof fullName !== "string" || fullName.trim().length < 2) return "Invalid full name.";
+  if (!phone    || typeof phone    !== "string" || phone.trim().length < 6)    return "Invalid phone number.";
+  if (!location || typeof location !== "string" || location.trim().length < 2) return "Invalid location.";
+  if (!Array.isArray(customerType) || !customerType.length || !customerType.every(v => VALID_CUSTOMER_TYPES.includes(v))) return "Invalid customer type.";
+  if (!Array.isArray(wasteType)    || !wasteType.length    || !wasteType.every(v => VALID_WASTE_TYPES.includes(v)))        return "Invalid waste type.";
+  if (!VALID_FREQUENCIES.includes(frequency))  return "Invalid pickup frequency.";
+  if (!VALID_QUANTITIES.includes(wasteQuantity)) return "Invalid waste quantity.";
+  if (!VALID_REFERRALS.includes(referralSource)) return "Invalid referral source.";
 
   return null;
 }
