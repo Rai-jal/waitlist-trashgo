@@ -89,28 +89,14 @@ export default function WaitlistForm({ onSuccess }) {
         >
           ✅
         </div>
-        <h3 className="text-xl sm:text-2xl font-extrabold text-gray-900 mb-3">
+        <h3 className="text-xl sm:text-2xl font-extrabold text-gray-900 mb-2">
           You're on the list!
         </h3>
-
-        {/* WhatsApp notification callout */}
-        <div className="w-full bg-[#f0fdf4] border border-green-200 rounded-xl px-4 py-3.5 mb-5 text-left flex gap-3">
-          <span className="text-xl shrink-0">💬</span>
-          <div>
-            <p className="text-sm font-semibold text-green-800">
-              Check your WhatsApp!
-            </p>
-            <p className="text-xs text-green-700 mt-0.5 leading-relaxed">
-              We've sent you a welcome message on WhatsApp with more details
-              about TrashGo, how the pilot works, and when we'll be in your
-              area.
-            </p>
-          </div>
-        </div>
-
-        <p className="text-sm text-gray-500 leading-relaxed max-w-xs mx-auto">
-          Our team will contact you personally when the free waste pickup pilot
-          begins in your area.
+        <p className="text-sm text-gray-500 max-w-xs mx-auto mb-4">
+          Check your WhatsApp — we've sent you a welcome message with next steps.
+        </p>
+        <p className="text-xs text-gray-400">
+          We'll reach out when we launch in your area.
         </p>
       </div>
     );
